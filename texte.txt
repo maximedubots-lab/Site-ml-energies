@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Énergies et Étoiles</title>
+    
+    <!-- 1. On charge les outils de design (Tailwind CSS) automatiquement -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. On charge les polices d'écriture -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <!-- 3. On charge les icônes (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Configuration des couleurs et polices -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: "#fae9e9",
+                        text: "#5e1c45",
+                        accent: "#b06d8a",
+                        button: "#720e46",
+                    },
+                    fontFamily: {
+                        heading: ['"Cormorant Garamond"', 'serif'],
+                        body: ['"Montserrat"', 'sans-serif'],
+                        script: ['"Great Vibes"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { background-color: #fae9e9; color: #5e1c45; }
+        .selection-theme::selection { background-color: #d8a8b8; color: white; }
+        /* Animation douce pour le défilement */
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="font-body selection-theme overflow-x-hidden">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 bg-[#fae9e9]/95 backdrop-blur-sm shadow-sm border-b border-white/20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center cursor-pointer" onclick="scrollToSection('accueil')">
+                    <i data-lucide="moon" class="h-6 w-6 text-[#5e1c45] mr-2 fill-current"></i>
+                    <span class="font-heading text-xl tracking-widest font-bold">ML ENERGIES ET ETOILES</span>
+                </div>
+                
+                <!-- Menu Ordinateur -->
+                <div class="hidden md:flex space-x-8">
+                    <button onclick="scrollToSection('accueil')" class="hover:text-[#b06d8a] px-3 py-2 text-sm font-medium tracking-wide transition-colors uppercase">Accueil</button>
+                    <button onclick="scrollToSection('presentation')" class="hover:text-[#b06d8a] px-3 py-2 text-sm font-medium tracking-wide transition-colors uppercase">Présentation</button>
+                    <button onclick="scrollToSection('magnetisme')" class="hover:text-[#b06d8a] px-3 py-2 text-sm font-medium tracking-wide transition-colors uppercase">Magnétisme</button>
+                    <button onclick="scrollToSection('astrologie')" class="hover:text-[#b06d8a] px-3 py-2 text-sm font-medium tracking-wide transition-colors uppercase">Astrologie</button>
+                    <button onclick="scrollToSection('energies')" class="hover:text-[#b06d8a] px-3 py-2 text-sm font-medium tracking-wide transition-colors uppercase">Énergies</button>
+                    <button onclick="scrollToSection('contact')" class="hover:text-[#b06d8a] px-3 py-2 text-sm font-medium tracking-wide transition-colors uppercase">Contact</button>
+                </div>
+
+                <!-- Bouton Menu Mobile -->
+                <div class="md:hidden">
+                    <button onclick="toggleMenu()" class="text-[#5e1c45]">
+                        <i id="menu-icon" data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Déroulant -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#fae9e9] shadow-lg absolute w-full border-t border-[#720e46]/10">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center flex flex-col">
+                <button onclick="scrollToSection('accueil')" class="w-full hover:bg-white/50 px-3 py-4 text-base font-medium">Accueil</button>
+                <button onclick="scrollToSection('presentation')" class="w-full hover:bg-white/50 px-3 py-4 text-base font-medium">Présentation</button>
+                <button onclick="scrollToSection('magnetisme')" class="w-full hover:bg-white/50 px-3 py-4 text-base font-medium">Magnétisme</button>
+                <button onclick="scrollToSection('astrologie')" class="w-full hover:bg-white/50 px-3 py-4 text-base font-medium">Astrologie</button>
+                <button onclick="scrollToSection('energies')" class="w-full hover:bg-white/50 px-3 py-4 text-base font-medium">Énergies</button>
+                <button onclick="scrollToSection('contact')" class="w-full hover:bg-white/50 px-3 py-4 text-base font-medium">Contact</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ACCUEIL -->
+    <section id="accueil" class="pt-32 pb-20 px-4 min-h-screen flex flex-col justify-center items-center text-center relative overflow-hidden">
+        <!-- Déco fond -->
+        <div class="absolute top-1/4 left-10 opacity-20"><i data-lucide="star" size="40"></i></div>
+        <div class="absolute bottom-1/4 right-10 opacity-20"><i data-lucide="moon" size="60"></i></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto w-full">
+            <div class="mb-4 flex justify-center">
+                <div class="relative">
+                    <i data-lucide="moon" class="w-24 h-24 text-[#5e1c45] opacity-80" stroke-width="1"></i>
+                    <i data-lucide="sparkles" class="absolute -top-2 -right-2 w-8 h-8 text-[#b06d8a]"></i>
+                </div>
+            </div>
+            
+            <!-- Texte courbé SVG -->
+            <div class="h-20 w-full relative flex justify-center items-center mb-6 overflow-visible">
+                <svg class="w-full max-w-2xl h-full overflow-visible" viewBox="0 0 600 100">
+                    <path id="curveHero" d="M 50, 80 Q 300, 10 550, 80" fill="transparent" />
+                    <text width="600">
+                        <textPath xlink:href="#curveHero" startOffset="50%" text-anchor="middle" class="text-sm md:text-base tracking-widest uppercase fill-[#720e46] font-body font-semibold">
+                            Laissez votre énergie guider la guérison
+                        </textPath>
+                    </text>
+                </svg>
+            </div>
+
+            <h1 class="font-heading text-5xl md:text-7xl mb-8 mt-2">Révélez votre essence</h1>
+            <p class="font-body text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+                L'alliance des soins énergétiques et de l'astrologie pour retrouver harmonie et sérénité.
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <button onclick="scrollToSection('magnetisme')" class="bg-button text-white px-8 py-3 rounded-full tracking-wider hover:opacity-90 transition-all transform hover:scale-105 shadow-md">Magnétisme</button>
+                <button onclick="scrollToSection('energies')" class="bg-button text-white px-8 py-3 rounded-full tracking-wider hover:opacity-90 transition-all transform hover:scale-105 shadow-md">Énergies</button>
+                <button onclick="scrollToSection('astrologie')" class="bg-button text-white px-8 py-3 rounded-full tracking-wider hover:opacity-90 transition-all transform hover:scale-105 shadow-md">Astrologie</button>
+            </div>
+        </div>
+        
+        <!-- Phases de lune déco -->
+        <div class="absolute bottom-10 flex gap-4 opacity-30">
+            <div class="w-4 h-4 rounded-full bg-[#5e1c45]"></div>
+            <div class="w-4 h-4 rounded-full bg-[#5e1c45]"></div>
+            <div class="w-6 h-6 rounded-full bg-[#5e1c45]"></div>
+            <div class="w-4 h-4 rounded-full bg-[#5e1c45]"></div>
+            <div class="w-4 h-4 rounded-full bg-[#5e1c45]"></div>
+        </div>
+    </section>
+
+    <!-- PRÉSENTATION -->
+    <section id="presentation" class="py-20 px-4 bg-white/30">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="inline-block px-8 py-2 rounded-full bg-button text-white font-script text-3xl mb-12 transform -rotate-2 shadow-lg">
+                Présentation
+            </span>
+            <div class="bg-white/60 p-8 md:p-12 rounded-3xl shadow-sm border border-white">
+                <p class="text-lg leading-loose">
+                    <span class="font-heading text-3xl md:text-4xl block mb-6">Bonjour, je suis Marie-Laure Richaud</span>
+                    Praticienne en magnétisme et astrologue.
+                    <br><br>
+                    J'accompagne les personnes qui souhaitent libérer leurs blocages, retrouver leur équilibre énergétique et mieux comprendre leur chemin intérieur.
+                    <br><br>
+                    Mon approche est <span class="italic font-serif text-xl bg-[#fae9e9] px-2">douce, bienveillante et personnalisée</span>, dans le respect du rythme de chacun.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAGNÉTISME -->
+    <section id="magnetisme" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-5xl mb-4">Magnétisme</h2>
+                <div class="h-1 w-20 mx-auto bg-button"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="bg-white/60 p-8 rounded-2xl shadow-sm h-full flex flex-col justify-center">
+                    <h3 class="font-script text-4xl mb-6">Qu'est-ce que c'est ?</h3>
+                    <p class="leading-relaxed">Une pratique énergétique qui harmonise le corps et l'esprit, apaise les tensions et relance la circulation de l'énergie.</p>
+                    <div class="mt-8 bg-white/50 p-6 rounded-xl">
+                        <h4 class="font-heading text-2xl mb-4 border-b border-[#720e46]/20 pb-2">Les Bienfaits</h4>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center"><i data-lucide="sparkles" class="mr-2 text-accent w-4 h-4"></i> Apaisement du stress et de l'anxiété</li>
+                            <li class="flex items-center"><i data-lucide="sparkles" class="mr-2 text-accent w-4 h-4"></i> Soulagement des tensions énergétiques</li>
+                            <li class="flex items-center"><i data-lucide="sparkles" class="mr-2 text-accent w-4 h-4"></i> Libération de blocages émotionnels</li>
+                            <li class="flex items-center"><i data-lucide="sparkles" class="mr-2 text-accent w-4 h-4"></i> Reconnexion à soi</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-white/60 p-8 rounded-2xl shadow-sm border-l-4 border-button">
+                        <h4 class="font-heading text-2xl mb-4">Déroulement d'une séance</h4>
+                        <p class="text-sm md:text-base leading-relaxed">Séance calme, allongé ou assis, sur place ou à distance. Harmonisation avec les mains sans contact physique, recentrage énergétique et retour au calme.</p>
+                    </div>
+                    <div class="text-center p-6 bg-white/40 rounded-xl border border-white">
+                        <p class="font-script text-3xl">Ces soins peuvent être également réalisés sur les animaux.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ASTROLOGIE -->
+    <section id="astrologie" class="py-20 px-4 bg-white/30">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-5xl mb-4">Astrologie</h2>
+                <div class="h-1 w-20 mx-auto bg-button"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="order-2 md:order-1 space-y-8">
+                    <div class="bg-white/60 p-8 rounded-2xl shadow-sm relative">
+                        <div class="absolute -top-3 -left-3"><i data-lucide="star" class="text-text opacity-20 w-10 h-10"></i></div>
+                        <h3 class="font-script text-4xl mb-4">Votre thème astral</h3>
+                        <p class="mb-4 text-justify leading-relaxed">Votre thème astral est une carte de votre personnalité et de vos énergies, établie à partir de votre date, heure et lieu de naissance. Il révèle vos forces, vos talents, vos défis et les cycles qui influencent votre vie.</p>
+                        <p class="italic text-sm border-l-2 border-accent pl-4">Comprendre votre thème permet de prendre des décisions alignées avec votre nature profonde.</p>
+                    </div>
+
+                    <div class="bg-[#720e46]/5 p-6 rounded-2xl border border-[#720e46]/10">
+                        <h4 class="font-heading text-2xl mb-3">Alliée Astrologie et Soin</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li>• Détection des blocages en lien avec vos cycles astrologiques</li>
+                            <li>• Harmonisation de votre énergie pour mieux vivre vos périodes de transition</li>
+                            <li>• Suivi personnalisé pour soutenir votre équilibre</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="order-1 md:order-2 bg-white/60 p-8 rounded-2xl shadow-sm flex flex-col justify-center">
+                    <h4 class="font-heading text-3xl mb-6 text-center">Les Bienfaits</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start"><i data-lucide="star" class="mt-1 mr-3 text-accent w-4 h-4 flex-shrink-0"></i> <span>Clarté sur vos cycles personnels et votre chemin de vie</span></li>
+                        <li class="flex items-start"><i data-lucide="star" class="mt-1 mr-3 text-accent w-4 h-4 flex-shrink-0"></i> <span>Meilleure compréhension de vos émotions et comportements</span></li>
+                        <li class="flex items-start"><i data-lucide="star" class="mt-1 mr-3 text-accent w-4 h-4 flex-shrink-0"></i> <span>Conseils personnalisés pour avancer en accord avec votre naturel</span></li>
+                        <li class="flex items-start"><i data-lucide="star" class="mt-1 mr-3 text-accent w-4 h-4 flex-shrink-0"></i> <span>Sentiment de confiance, de guidance et de sérénité</span></li>
+                    </ul>
+                    <p class="mt-8 text-center text-sm opacity-70">La séance peut se faire en présentiel ou à distance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ÉNERGIES (LIEUX) -->
+    <section id="energies" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="inline-block px-8 py-2 rounded-full bg-button text-white font-heading text-2xl tracking-widest uppercase shadow-md">
+                    Énergies des lieux
+                </span>
+            </div>
+
+            <div class="bg-white/60 rounded-3xl p-8 md:p-12 shadow-sm relative overflow-hidden">
+                <div class="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-[#720e46]/5 pointer-events-none"></div>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="font-script text-4xl mb-6">Pourquoi nettoyer un lieu ?</h3>
+                        <p class="leading-relaxed mb-8">Les lieux gardent des traces de ce qu'ils ont vécu : émotions, conflits, fatigue... Ces énergies s'accumulent et peuvent rendre l'atmosphère lourde ou inconfortable.</p>
+                        <div class="bg-white/70 p-6 rounded-xl shadow-inner">
+                            <h4 class="font-heading text-xl mb-3 flex items-center">
+                                <i data-lucide="sparkles" class="mr-2 text-accent w-4 h-4"></i> Les Bienfaits
+                            </h4>
+                            <ul class="space-y-2 text-sm">
+                                <li>• Sensation de fraîcheur et de renouveau</li>
+                                <li>• Amélioration du sommeil et du bien-être</li>
+                                <li>• Apaisement général</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="font-script text-4xl mb-6">Quand faire un nettoyage ?</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center bg-white/40 p-3 rounded-lg hover:bg-white/60 transition-colors"><i data-lucide="home" class="mr-3 text-accent w-4 h-4"></i> Avant/après un déménagement</li>
+                            <li class="flex items-center bg-white/40 p-3 rounded-lg hover:bg-white/60 transition-colors"><i data-lucide="arrow-right" class="mr-3 text-accent w-4 h-4"></i> Suite à une période difficile</li>
+                            <li class="flex items-center bg-white/40 p-3 rounded-lg hover:bg-white/60 transition-colors"><i data-lucide="arrow-right" class="mr-3 text-accent w-4 h-4"></i> Après des conflits ou une séparation</li>
+                            <li class="flex items-center bg-white/40 p-3 rounded-lg hover:bg-white/60 transition-colors"><i data-lucide="arrow-right" class="mr-3 text-accent w-4 h-4"></i> Sentiment de "mauvaise ambiance"</li>
+                            <li class="flex items-center bg-white/40 p-3 rounded-lg hover:bg-white/60 transition-colors"><i data-lucide="briefcase" class="mr-3 text-accent w-4 h-4"></i> Pour un lieu de pratique ou travail</li>
+                        </ul>
+                        <p class="mt-8 font-script text-2xl text-center leading-relaxed opacity-90">Le travail se fait de manière douce, respectueuse et non intrusive.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="pt-24 pb-20 px-4 bg-[#720e46] text-white relative mt-10">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <!-- Courbe contact -->
+            <div class="mb-8 relative h-24 flex justify-center items-center">
+                <svg class="absolute w-full max-w-2xl h-full overflow-visible" viewBox="0 0 600 100">
+                    <path id="curveContact" d="M 10, 80 Q 300, 30 590, 80" fill="transparent" />
+                    <text width="600">
+                        <textPath xlink:href="#curveContact" startOffset="50%" text-anchor="middle" class="text-sm md:text-base tracking-widest fill-[#fae9e9] font-heading uppercase font-bold">
+                            Votre chemin vers l'harmonie commence par un message
+                        </textPath>
+                    </text>
+                </svg>
+                <div class="flex gap-6 mt-16 relative z-20">
+                    <div class="bg-[#fae9e9]/20 p-3 rounded-full hover:bg-[#fae9e9]/30 transition-colors cursor-pointer"><i data-lucide="phone" class="w-6 h-6"></i></div>
+                    <div class="bg-[#fae9e9]/20 p-3 rounded-full hover:bg-[#fae9e9]/30 transition-colors cursor-pointer"><i data-lucide="mail" class="w-6 h-6"></i></div>
+                </div>
+            </div>
+
+            <div class="bg-[#fae9e9] text-[#5e1c45] rounded-3xl p-8 md:p-12 shadow-2xl max-w-2xl mx-auto transform hover:-translate-y-1 transition-transform duration-300">
+                <h3 class="font-heading text-4xl mb-8">Contactez-moi</h3>
+                
+                <div class="space-y-6 mb-12 border-b border-[#720e46]/10 pb-10">
+                    <div class="flex items-center justify-center space-x-3">
+                        <i data-lucide="mail" class="text-accent w-5 h-5"></i>
+                        <a href="mailto:mlenergiesetetoiles@gmail.com" class="text-lg hover:underline hover:text-accent transition-colors">mlenergiesetetoiles@gmail.com</a>
+                    </div>
+                    <div class="flex items-center justify-center space-x-3">
+                        <i data-lucide="phone" class="text-accent w-5 h-5"></i>
+                        <span class="text-lg">+33 (0) 6 88 07 60 50</span>
+                    </div>
+                    <div class="flex items-center justify-center space-x-3">
+                        <i data-lucide="map-pin" class="text-accent w-5 h-5"></i>
+                        <span class="text-lg">84100 Orange, France</span>
+                    </div>
+                </div>
+
+                <form id="contactForm" class="space-y-4 text-left max-w-md mx-auto" onsubmit="handleSubmit(event)">
+                    <div>
+                        <label class="block text-xs uppercase tracking-wide mb-1 opacity-70 pl-1">Nom</label>
+                        <input type="text" id="nom" class="w-full bg-white/50 border-b border-[#720e46] p-2 focus:outline-none focus:bg-white transition-colors rounded-t-md" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-wide mb-1 opacity-70 pl-1">Email</label>
+                        <input type="email" id="email" class="w-full bg-white/50 border-b border-[#720e46] p-2 focus:outline-none focus:bg-white transition-colors rounded-t-md" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-wide mb-1 opacity-70 pl-1">Message</label>
+                        <textarea id="message" rows="3" class="w-full bg-white/50 border-b border-[#720e46] p-2 focus:outline-none focus:bg-white transition-colors rounded-t-md" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-[#720e46] text-white py-3 rounded-lg font-heading tracking-widest mt-6 hover:bg-[#5e1c45] transition-colors flex items-center justify-center shadow-md">
+                        Préparer mon email <i data-lucide="send" class="ml-2 w-4 h-4"></i>
+                    </button>
+                    <p class="text-xs text-center mt-2 opacity-60">(Ceci ouvrira votre logiciel de messagerie par défaut)</p>
+                </form>
+            </div>
+
+            <div class="mt-16 opacity-50 flex justify-center gap-4">
+                <div class="w-4 h-4 rounded-full bg-[#fae9e9]"></div>
+                <div class="w-6 h-6 rounded-full bg-[#fae9e9]"></div>
+                <div class="w-8 h-8 rounded-full bg-[#fae9e9]"></div>
+                <div class="w-6 h-6 rounded-full bg-[#fae9e9]"></div>
+                <div class="w-4 h-4 rounded-full bg-[#fae9e9]"></div>
+            </div>
+            
+            <p class="mt-8 text-xs opacity-60">© <span id="year"></span> ML Energies et Etoiles. Tous droits réservés.</p>
+        </div>
+    </section>
+
+    <!-- SCRIPT (La mécanique du site) -->
+    <script>
+        // Initialiser les icônes
+        lucide.createIcons();
+
+        // Mettre l'année automatiquement
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Fonction pour le menu mobile
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                // Changer l'icône en croix (simulation simple ou re-render lucide si besoin, ici simple toggle visibility)
+            } else {
+                menu.classList.add('hidden');
+            }
+        }
+
+        // Fonction pour scroller
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            const menu = document.getElementById('mobile-menu');
+            
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                // Fermer le menu si ouvert
+                if (!menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                }
+            }
+        }
+
+        // Fonction formulaire
+        function handleSubmit(e) {
+            e.preventDefault();
+            const nom = document.getElementById('nom').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            const subject = `Nouveau message de ${nom} via le site web`;
+            const body = `Nom: ${nom}\nEmail: ${email}\n\nMessage:\n${message}`;
+            
+            window.location.href = `mailto:mlenergiesetetoiles@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+    </script>
+</body>
+</html>
+
+
